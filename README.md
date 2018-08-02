@@ -22,7 +22,7 @@ absentee
 
 Here I'm adding a comment character to the beginning of all my lines.
 
-![searching for: ^ Replacing with //](/advanced replace add comments.png)
+![searching for: ^ Replacing with //](https://raw.githubusercontent.com/ccouzens/regex_tutorial/master/advanced%20replace%20add%20comments.png)
 
 ### Finding strings that conform
 
