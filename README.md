@@ -85,3 +85,47 @@ For more information, please study the computer science topic [automata](https:/
 The tooling you're using may force you to use regular expressions in a particular way.
 For example it may want you to provide a regular expression that matches positive input.
 But it may be more convenient to write a regular expression that matches negative input.
+
+## Writing/Reading Regular Expressions
+
+Mozilla have a good
+[reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Writing_a_regular_expression_pattern).
+
+### Simple patterns
+
+If you want search for an exact match, simple use what you're searching for as
+the regular expression.
+
+Here we're searching for words that contain "cake".
+
+```bash
+egrep cake < /usr/share/dict/words
+ashcake
+battercake
+bridecake
+cake
+cakebox
+cakebread
+cakehouse
+cakemaker
+cakemaking
+caker
+```
+
+However, if your search has any of these characters:
+`\^$[](){}*+.?`
+then you need to escape them.
+These are known as special characters, because they have extra meaning.
+We'll cover them later.
+
+### Escaping special characters
+
+If you want to match a special character, you need to prepend a `\` (back
+slash).
+
+For example, if you want to search for `(text)` in this document, your regular
+expression would be `\(text\)`.
+
+Or if you want to search for file paths that match a Windows `C:\` drive, your
+regular expression would be `C:\\`.
+The backslash is escaped with a backslash!
