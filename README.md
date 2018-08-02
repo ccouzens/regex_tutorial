@@ -64,3 +64,24 @@ dateOfBirth(einstein) // Returns "14/04/1978"
 
 As you can see, regular expressions can be used to perform a variety of
 different functions, and can be used in a variety of different contexts.
+
+## Limitations
+
+Regular expression implementations vary.
+The basic syntax can be expected to be well supported in all instances.
+Advanced features may not always be present, or may work slightly differently.
+
+Some problems can't be determined by a regular expression.
+For example, we can't write a regular expression to determine if a string has matching open and close brackets.
+
+```
+# Can't be determined by a regular expression!
+(((()))) # good
+(((())) # bad
+```
+
+For more information, please study the computer science topic [automata](https://en.wikipedia.org/wiki/Regular_language#Location_in_the_Chomsky_hierarchy).
+
+The tooling you're using may force you to use regular expressions in a particular way.
+For example it may want you to provide a regular expression that matches positive input.
+But it may be more convinient to write a regular expression that matches negative input.
