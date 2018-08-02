@@ -84,4 +84,4 @@ For more information, please study the computer science topic [automata](https:/
 
 The tooling you're using may force you to use regular expressions in a particular way.
 For example it may want you to provide a regular expression that matches positive input.
-But it may be more convinient to write a regular expression that matches negative input.
+But it may be more convenient to write a regular expression that matches negative input.
