@@ -129,3 +129,24 @@ expression would be `\(text\)`.
 Or if you want to search for file paths that match a Windows `C:\` drive, your
 regular expression would be `C:\\`.
 The backslash is escaped with a backslash!
+
+### Matching at the start of a lines
+
+You can 'anchor' your regular expression to the start of a line by using the
+`^` character.
+
+```bash
+egrep '^cake' < /usr/share/dict/words
+cake
+cakebox
+cakebread
+cakehouse
+cakemaker
+cakemaking
+caker
+cakette
+cakewalk
+cakewalker
+```
+
+Here we use it to search for words that start with 'cake'.
