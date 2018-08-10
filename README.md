@@ -2,7 +2,7 @@
 
 ## What are they good for?
 
-Most things regular searching is good for, plus more!
+Most things standard searching is good for, plus more!
 
 ### Finding lines in a file
 
@@ -130,7 +130,7 @@ Or if you want to search for file paths that match a Windows `C:\` drive, your
 regular expression would be `C:\\`.
 The backslash is escaped with a backslash!
 
-### Matching at the start of a lines
+### Matching at the start of a line
 
 You can 'anchor' your regular expression to the start of a line by using the
 `^` character.
@@ -150,3 +150,149 @@ cakewalker
 ```
 
 Here we use it to search for words that start with 'cake'.
+
+### Matching at the end of a line
+
+You can 'anchor' your regular expression to the end of a line by using the
+`$` character.
+
+```bash
+egrep 'cake$' < /usr/share/dict/words
+ashcake
+battercake
+bridecake
+cake
+carcake
+cheesecake
+coffeecake
+corncake
+creamcake
+cupcake
+```
+
+Here we use it to search for words that end with 'cake'.
+
+```bash
+egrep '^cake$' < /usr/share/dict/words
+cake
+```
+
+Only 'cake' begins and ends with 'cake'.
+
+### Matching multiple options
+
+You can use allow multiple options by using the `|` or pipe character.
+
+```bash
+egrep 'apple|pear' < /usr/share/dict/words
+appear
+appearance
+appearanced
+appearer
+apple
+appleberry
+appleblossom
+applecart
+appledrane
+applegrower
+```
+
+Here we're looking for lines that contain apple or pear.
+
+We can use brackets (non matching parentheses) if we want to only have some of
+the expression multiple choice.
+
+```bash
+egrep --color '(?:apple|pear)$' < /usr/share/dict/words
+appear
+apple
+Balmawhapple
+boarspear
+capple
+coappear
+compear
+crapple
+dapple
+disappear
+```
+
+Here we're looking for lines that contian apple or pear, then immediately end.
+
+We can combine 2 groups of multiple choice at the same time.
+
+```bash
+egrep '(?:a|e|i|o|u)(?:a|e|i|o|u)' < /usr/share/dict/words | head
+aa
+aal
+aalii
+aam
+aardvark
+aardwolf
+Ababua
+abacination
+abaction
+abaisance
+```
+
+Here we're looking for words that contain 2 vowels immediately after each other.
+
+### Repeating ourselves
+
+Regular expressions give us several ways of expressing the previous example
+without the repetition.
+
+The following are all equivalent:
+
+```
+(?:a|e|i|o|u)(?:a|e|i|o|u)
+(?:a|e|i|o|u){2}
+(?:a|e|i|o|u){2,2}
+```
+
+They all match vowels immediately after each other.
+
+More specifically, `{n}` matches the previous expression precisely n times.
+`{n, m}` matches the previous expression between n and m times.
+
+```bash
+egrep --color 'd(?:a|e|i|o|u){2,3}s' < /usr/share/dict/words
+acanthocladous
+acanthopodous
+acediast
+achlamydeous
+acromyodous
+adenodiastasis
+adenopodous
+adradius
+aecidiospore
+aecidiostage
+```
+
+The above searches for lines with a d followed by 2 or 3 vowels followed by an s.
+
+### Repeating ourselves indefinitely
+
+We can use `{n,}` to repeat ourselves n or more times.
+
+```bash
+egrep --color '^t(?:a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z){8,}s$' < /usr/share/dict/words
+taboparalysis
+taboparesis
+taccaceous
+tachygenesis
+tachythanatous
+tackleless
+tactfulness
+tactlessness
+taeniosomous
+taillessness
+```
+
+This searches for all words beginning with t, ending with s with 8 or more
+characters in between.
+This could also be described at all words beginning with t, ending with s
+that are 10 or more characters long;
+But it doesn't match the regular expression so well.
+
+The shortcut for `{1,}` is `+`.
+The shortcut for `{0,}` is `*`.
