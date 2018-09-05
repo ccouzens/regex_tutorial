@@ -1,0 +1,9 @@
+##
+# Host File
+#
+# example file to use for IP addresses
+##
+127.0.0.1	localhost localapp
+::1             localhost
+10.100.7.3  myserver3.mynetwork
+10.20.127.200  testserver8.testnetwork
